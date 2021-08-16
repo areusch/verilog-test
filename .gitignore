@@ -1,0 +1,4 @@
+*.vvp
+.ninja_deps
+.ninja_log
+*.log

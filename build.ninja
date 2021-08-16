@@ -1,0 +1,19 @@
+vflags = -g2009
+simcompileflags = $vflags
+
+rule sim-compile
+  command = iverilog $simcompileflags -tvvp -o $out $in
+
+vvpflags =
+
+rule sim
+  command = vvp $vvpflags -l $out $in
+
+synthflags = $vflags
+
+rule synthesize
+  command = iverilog $synthflags -tfpga
+
+build tb.vvp: sim-compile top.v tb.sv
+
+build tb.log: sim tb.vvp
